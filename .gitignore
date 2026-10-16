@@ -1,0 +1,32 @@
+# Dependencias y herramientas de compilacion (alcance excluido: sin npm)
+node_modules/
+package-lock.json
+yarn.lock
+pnpm-lock.yaml
+dist/
+build/
+out/
+.parcel-cache/
+.vite/
+coverage/
+
+# Sistema y editores
+.DS_Store
+Thumbs.db
+desktop.ini
+.vscode/
+.idea/
+*.swp
+*~
+
+# Entorno y secretos (nunca subir credenciales)
+.env
+.env.*
+*.pem
+*.key
+
+# Archivos redundantes de la consigna
+*.zip
+*.rar
+*.bak
+*.tmp
