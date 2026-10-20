@@ -4,13 +4,14 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Libreria Nya — Catálogo y gestión</title>
+  <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
 
   <!-- HEADER -->
   <header>
     <h1>Libreria Nya</h1>
-    <nav aria-label="Navegación principal">
+    <nav aria-label="Navegación principal" class="barra-navegacion">
       <ul>
         <li><a href="#vista-catalogo">Catálogo</a></li>
         <li><a href="#vista-libros">Libros</a></li>
@@ -22,19 +23,19 @@
   </header>
 
   <!-- MAIN -->
-  <main>
+    <main class="contenedor-principal">
     <!-- SECCION CATALOGO -->
     <section id="vista-catalogo" aria-labelledby="titulo-catalogo">
       <h2 id="titulo-catalogo">Catálogo</h2>
       <form id="buscador-catalogo" action="#" method="get">
-        <label for="busqueda-titulo">Buscar por título</label>
-        <input type="text" id="busqueda-titulo" name="busqueda-titulo" placeholder="Escribí parte del título">
-        <button type="submit">Buscar</button>
+        <label for="busqueda-titulo" class="etiqueta-campo">Buscar por título</label>
+        <input type="text" id="busqueda-titulo" name="busqueda-titulo" class="campo" placeholder="Escribí parte del título">
+        <button type="submit" class="boton boton-primario">Buscar</button>
       </form>
-      <p id="mensaje-sin-resultados" hidden>No se encontraron libros para esa búsqueda.</p>
+      <p id="mensaje-sin-resultados" class="mensaje mensaje-error" aria-live="polite" hidden>No se encontraron libros para esa búsqueda.</p>
       <div id="listado-catalogo">
         <!-- Ejemplo estructural: muestra los campos que tendrá cada libro. No es un dato real del catálogo. -->
-        <article>
+        <article class="tarjeta-libro">
           <h3>Ejemplo estructural de libro</h3>
           <p>Título: <span>Libro de ejemplo</span></p>
           <p>ISBN: <span>000-0000000000</span></p>
@@ -44,40 +45,40 @@
           <p>Precio: <span>0.00</span></p>
         </article>
       </div>
-      <p id="mensaje-catalogo-vacio" hidden>Todavía no hay libros en el catálogo.</p>
+      <p id="mensaje-catalogo-vacio" class="mensaje mensaje-vacio" hidden>Todavía no hay libros en el catálogo.</p>
     </section>
 
     <!-- SECCION LIBROS -->
     <section id="vista-libros" aria-labelledby="titulo-libros">
       <h2 id="titulo-libros">Libros</h2>
       <form id="form-alta-libro" action="#" method="post">
-        <label for="libro-titulo">Título</label>
-        <input type="text" id="libro-titulo" name="libro-titulo" required>
+        <label for="libro-titulo" class="etiqueta-campo">Título</label>
+        <input type="text" id="libro-titulo" name="libro-titulo" class="campo" required>
 
-        <label for="libro-isbn">ISBN</label>
-        <input type="text" id="libro-isbn" name="libro-isbn" required>
+        <label for="libro-isbn" class="etiqueta-campo">ISBN</label>
+        <input type="text" id="libro-isbn" name="libro-isbn" class="campo" required>
 
-        <label for="libro-precio">Precio</label>
-        <input type="number" id="libro-precio" name="libro-precio" min="0" step="0.01" required>
+        <label for="libro-precio" class="etiqueta-campo">Precio</label>
+        <input type="number" id="libro-precio" name="libro-precio" class="campo" min="0" step="0.01" required>
 
-        <label for="libro-editorial">Editorial</label>
-        <select id="libro-editorial" name="libro-editorial" required>
+        <label for="libro-editorial" class="etiqueta-campo">Editorial</label>
+        <select id="libro-editorial" name="libro-editorial" class="campo" required>
           <option value="">Seleccioná una editorial</option>
         </select>
 
-        <label for="libro-genero">Género</label>
-        <select id="libro-genero" name="libro-genero">
+        <label for="libro-genero" class="etiqueta-campo">Género</label>
+        <select id="libro-genero" name="libro-genero" class="campo">
           <option value="">Sin clasificar</option>
         </select>
 
-        <label for="libro-autores">Autores</label>
-        <select id="libro-autores" name="libro-autores" multiple required>
+        <label for="libro-autores" class="etiqueta-campo">Autores</label>
+        <select id="libro-autores" name="libro-autores" class="campo" multiple required>
         </select>
 
-        <button type="submit">Registrar libro</button>
+        <button type="submit" class="boton boton-primario">Registrar libro</button>
       </form>
-      <div id="resultado-alta-libro" aria-live="polite"></div>
-      <p id="mensaje-libros-vacio">Todavía no hay libros registrados.</p>
+      <div id="resultado-alta-libro" class="mensaje" aria-live="polite"></div>
+      <p id="mensaje-libros-vacio" class="mensaje mensaje-vacio">Todavía no hay libros registrados.</p>
       <div id="listado-libros"></div>
     </section>
 
@@ -85,79 +86,83 @@
     <section id="vista-clientes" aria-labelledby="titulo-clientes">
       <h2 id="titulo-clientes">Clientes</h2>
       <form id="form-alta-cliente" action="#" method="post">
-        <label for="cliente-nombre">Nombre completo</label>
-        <input type="text" id="cliente-nombre" name="cliente-nombre" required>
+        <label for="cliente-nombre" class="etiqueta-campo">Nombre completo</label>
+        <input type="text" id="cliente-nombre" name="cliente-nombre" class="campo" required>
 
-        <label for="cliente-email">Email</label>
-        <input type="email" id="cliente-email" name="cliente-email" required>
+        <label for="cliente-email" class="etiqueta-campo">Email</label>
+        <input type="email" id="cliente-email" name="cliente-email" class="campo" required>
 
-        <button type="submit">Registrar cliente</button>
+        <button type="submit" class="boton boton-primario">Registrar cliente</button>
       </form>
-      <div id="resultado-alta-cliente" aria-live="polite"></div>
-      <p id="mensaje-clientes-vacio">Todavía no hay clientes registrados.</p>
+      <div id="resultado-alta-cliente" class="mensaje" aria-live="polite"></div>
+      <p id="mensaje-clientes-vacio" class="mensaje mensaje-vacio">Todavía no hay clientes registrados.</p>
       <div id="listado-clientes"></div>
     </section>
 
     <!-- SECCION VENTAS -->
     <section id="vista-ventas" aria-labelledby="titulo-ventas">
       <h2 id="titulo-ventas">Ventas</h2>
-      <label for="venta-cliente">Cliente</label>
-      <select id="venta-cliente" name="venta-cliente">
+      <label for="venta-cliente" class="etiqueta-campo">Cliente</label>
+      <select id="venta-cliente" name="venta-cliente" class="campo">
         <option value="">Seleccioná un cliente</option>
       </select>
 
       <form id="form-renglon" action="#" method="post">
-        <label for="renglon-libro">Libro</label>
-        <select id="renglon-libro" name="renglon-libro">
+        <label for="renglon-libro" class="etiqueta-campo">Libro</label>
+        <select id="renglon-libro" name="renglon-libro" class="campo">
           <option value="">Seleccioná un libro</option>
         </select>
 
-        <label for="renglon-cantidad">Cantidad</label>
-        <input type="number" id="renglon-cantidad" name="renglon-cantidad" min="1" step="1" value="1" required>
+        <label for="renglon-cantidad" class="etiqueta-campo">Cantidad</label>
+        <input type="number" id="renglon-cantidad" name="renglon-cantidad" class="campo" min="1" step="1" value="1" required>
 
-        <button type="submit">Agregar renglón</button>
+        <button type="submit" class="boton boton-primario">Agregar renglón</button>
       </form>
 
-      <table id="tabla-renglones">
-        <thead>
-          <tr>
-            <th scope="col">Libro</th>
-            <th scope="col">Cantidad</th>
-            <th scope="col">Precio unitario</th>
-            <th scope="col">Subtotal</th>
-            <th scope="col">Quitar</th>
-          </tr>
-        </thead>
-        <tbody></tbody>
-      </table>
-      <p id="mensaje-renglones-vacio">La venta todavía no tiene renglones.</p>
+      <div class="tabla-contenedor">
+        <table id="tabla-renglones" class="tabla">
+          <thead>
+            <tr>
+              <th scope="col">Libro</th>
+              <th scope="col">Cantidad</th>
+              <th scope="col">Precio unitario</th>
+              <th scope="col">Subtotal</th>
+              <th scope="col">Quitar</th>
+            </tr>
+          </thead>
+          <tbody></tbody>
+        </table>
+      </div>
+      <p id="mensaje-renglones-vacio" class="mensaje mensaje-vacio">La venta todavía no tiene renglones.</p>
 
       <div id="resumen-venta">
         <p>Total: <span id="venta-total">0.00</span></p>
       </div>
-      <button type="button" id="boton-confirmar-venta">Confirmar venta</button>
-      <div id="resultado-venta" aria-live="polite"></div>
+      <button type="button" id="boton-confirmar-venta" class="boton boton-primario">Confirmar venta</button>
+      <div id="resultado-venta" class="mensaje" aria-live="polite"></div>
     </section>
 
     <!-- SECCION HISTORIAL -->
     <section id="vista-historial" aria-labelledby="titulo-historial">
       <h2 id="titulo-historial">Historial</h2>
-      <p id="mensaje-historial-vacio">Todavía no hay ventas registradas.</p>
-      <table id="tabla-historial">
-        <thead>
-          <tr>
-            <th scope="col">Identificador</th>
-            <th scope="col">Fecha</th>
-            <th scope="col">Cliente</th>
-            <th scope="col">Total</th>
-            <th scope="col">Detalle</th>
-          </tr>
-        </thead>
-        <tbody></tbody>
-      </table>
+      <p id="mensaje-historial-vacio" class="mensaje mensaje-vacio">Todavía no hay ventas registradas.</p>
+      <div class="tabla-contenedor">
+        <table id="tabla-historial" class="tabla">
+          <thead>
+            <tr>
+              <th scope="col">Identificador</th>
+              <th scope="col">Fecha</th>
+              <th scope="col">Cliente</th>
+              <th scope="col">Total</th>
+              <th scope="col">Detalle</th>
+            </tr>
+          </thead>
+          <tbody></tbody>
+        </table>
+      </div>
       <div id="detalle-venta"></div>
     </section>
-    
+
   </main>
 
   <!-- FOOTER -->
