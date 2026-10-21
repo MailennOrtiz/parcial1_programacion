@@ -12,7 +12,7 @@ let ventaEnCurso = {
 
 const historialVentas = [];
 
-let cantidadInvalidaPendiente = false;
+const cantidadesInvalidas = new Set();
 
 /* ------------------------------------------------------------
    Helpers de datos y formatos
@@ -130,6 +130,7 @@ function cambiarCantidadRenglon(idLibro, nuevaCantidad) {
 }
 
 function quitarRenglon(idLibro) {
+  cantidadesInvalidas.delete(idLibro);
   ventaEnCurso.renglones = ventaEnCurso.renglones.filter(
     function (renglon) {
       return renglon.idLibro !== idLibro;
@@ -142,7 +143,7 @@ function limpiarVentaEnCurso() {
     idCliente: null,
     renglones: []
   };
-  cantidadInvalidaPendiente = false;
+  cantidadesInvalidas.clear();
   document.getElementById("venta-cliente").value = "";
 }
 
@@ -165,7 +166,9 @@ function validarConfirmarVenta() {
     errores.push("La venta no tiene renglones: agregá al menos uno.");
   }
 
-  if (cantidadInvalidaPendiente) {
+  if (cantidadesInvalidas.size > 0 || ventaEnCurso.renglones.some(
+    (renglon) => !esCantidadValida(renglon.cantidad)
+  )) {
     errores.push(
       "Hay cantidades inválidas: la cantidad debe ser un " +
       "número entero mayor que cero."
@@ -207,6 +210,9 @@ function registrarVentaConfirmada() {
   };
 
   historialVentas.push(venta);
+  document.dispatchEvent(new CustomEvent("libreria:venta-confirmada", {
+    detail: { venta: venta }
+  }));
   return venta;
 }
 
@@ -231,9 +237,18 @@ function renderTablaRenglones() {
     inputCantidad.min = "1";
     inputCantidad.step = "1";
     inputCantidad.value = String(renglon.cantidad);
+    inputCantidad.id = "cantidad-" + renglon.idLibro;
+    const etiquetaCantidad = document.createElement("label");
+    etiquetaCantidad.htmlFor = inputCantidad.id;
+    etiquetaCantidad.className = "solo-lectores";
+    etiquetaCantidad.textContent = "Cantidad de " + renglon.titulo;
+    if (cantidadesInvalidas.has(renglon.idLibro)) {
+      inputCantidad.value = "";
+      inputCantidad.setAttribute("aria-invalid", "true");
+    }
     inputCantidad.className = "campo cantidad-renglon";
     inputCantidad.setAttribute("data-idlibro", renglon.idLibro);
-    celdaCantidad.append(inputCantidad);
+    celdaCantidad.append(etiquetaCantidad, inputCantidad);
 
     const celdaPrecio = document.createElement("td");
     celdaPrecio.textContent = formatearImporte(renglon.precioUnitario);
@@ -383,7 +398,13 @@ function renderDetalleVenta(idVenta) {
   const total = document.createElement("p");
   total.textContent = "Total: " + formatearImporte(venta.total);
 
-  contenedor.replaceChildren(titulo, datosVenta, tabla, total);
+  const contenedorTabla = document.createElement("div");
+  contenedorTabla.className = "tabla-contenedor";
+  contenedorTabla.tabIndex = 0;
+  contenedorTabla.setAttribute("role", "region");
+  contenedorTabla.setAttribute("aria-label", "Renglones de la venta " + venta.idVenta);
+  contenedorTabla.append(tabla);
+  contenedor.replaceChildren(titulo, datosVenta, contenedorTabla, total);
 }
 
 /* ------------------------------------------------------------
@@ -499,13 +520,13 @@ function manejarCambioCantidad(evento) {
 
   if (actualizado) {
     input.removeAttribute("aria-invalid");
-    cantidadInvalidaPendiente = false;
+    cantidadesInvalidas.delete(idLibro);
     renderVentaEnCurso();
     return;
   }
 
   input.setAttribute("aria-invalid", "true");
-  cantidadInvalidaPendiente = true;
+  cantidadesInvalidas.add(idLibro);
   mostrarResultadoVenta(
     ["La cantidad debe ser un número entero mayor que cero."],
     false
@@ -552,6 +573,8 @@ function manejarAltaEnLibreria() {
    ------------------------------------------------------------ */
 
 function iniciarVentas() {
+  cargarColeccionPersistida("ventas", historialVentas);
+
   const formularioRenglon = document.getElementById("form-renglon");
 
   formularioRenglon.noValidate = true;
