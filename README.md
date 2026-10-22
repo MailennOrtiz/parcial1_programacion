@@ -93,7 +93,26 @@ Los importes son números, no cadenas con símbolo monetario. El género ausente
 - El aviso de persistencia, al principio del contenido principal, permanece aunque se muestre un mensaje de alta o confirmación correcta: esos mensajes indican que la operación se registró en sesión, no que un guardado fallido se haya completado.
 - No hay botón de borrado o reparación. Revisar los valores problemáticos en DevTools **en una copia de prueba** y recargar después de corregirlos; no borrar el almacenamiento personal para hacer las pruebas.
 
-## Verificación: entorno y distinción de resultados
+## Resultado del recorrido manual informado por el usuario
+
+**Fecha del registro:** 22/10/2026. **Fuente:** confirmación del usuario en la conversación: «pasó todas las pruebas». El usuario informa haber completado satisfactoriamente el recorrido de la guía manual sobre el proyecto. Este registro documenta su reporte; no representa una nueva ejecución del asistente.
+
+No se proporcionaron fecha exacta de ejecución, navegador/versión del recorrido manual, perfil, capturas ni valores de identificación de los registros usados. No se atribuye a este recorrido el entorno de las pruebas automatizadas anteriores. Los pasos y datos de las tablas de protocolo son instrucciones reproducibles, no una transcripción de los valores usados por el usuario.
+
+| Caso | Resultado informado | Estado actual |
+| --- | --- | --- |
+| M-01 · Búsqueda | El usuario confirma que la búsqueda parcial, vacía y sin resultados funcionó según la guía. | Aprobado según reporte del usuario. |
+| M-02 · Libros | El usuario confirma los rechazos y altas de libros y su aparición en las vistas relacionadas. | Aprobado según reporte del usuario. |
+| M-03 · Clientes | El usuario confirma los rechazos y el alta válida con actualización de listado y selector. | Aprobado según reporte del usuario. |
+| M-04 · Venta inválida | El usuario confirma las validaciones, duplicados y edición/eliminación de renglones de la guía. | Aprobado según reporte del usuario. |
+| M-05 · Venta válida | El usuario informa resultado correcto del caso de precios 1500/2000, cantidades 2/1 y total esperado 5000, incluido el historial. | Aprobado según reporte del usuario. |
+| M-06 · Precio histórico | La confirmación general incluye funcionamiento correcto de la conservación de importes. No se confirmó expresamente que la prueba se realizara con guía docente. | Comprobación funcional aprobada según reporte del usuario; instancia docente sin confirmar. |
+| M-07 · Recarga y reapertura | El usuario confirma conservación de registros sin duplicados y comportamiento del borrador según la guía. | Aprobado según reporte del usuario. |
+| M-08 · Teclado y adaptación | El usuario confirma el recorrido de teclado y los anchos 320/1280 de la guía. | Aprobado según reporte del usuario. |
+
+Este registro posterior actualiza los estados manuales pendientes de los antecedentes siguientes. Quedan por completar los metadatos del recorrido manual y confirmar la instancia docente de M-06; no se declara realizada esa instancia a partir de la confirmación general.
+
+## Antecedentes automatizados: entorno y distinción de resultados
 
 Se realizaron **controles automatizados en navegador real**, mediante Chrome headless y su protocolo de depuración, sobre `file:///D:/parcial1programacion/index.html`. Se usó un script temporal fuera de la entrega y un perfil nuevo independiente del perfil habitual del usuario; no se instalaron dependencias del proyecto ni se modificó su almacenamiento personal.
 
@@ -103,7 +122,7 @@ Se realizaron **controles automatizados en navegador real**, mediante Chrome hea
 - Apertura con archivos locales, recargas y reapertura en otra pestaña del mismo perfil temporal; sin servidor.
 - Los envíos e interacciones de formulario se ejecutaron mediante DOM; se midieron anchos y un cambio de foco por Tab. **Esto no es un recorrido manual completo, inspección visual humana ni una prueba guiada por el docente.**
 
-### Casos manuales exigidos y resultados observados
+### Protocolos y resultados anteriores al reporte manual
 
 Los resultados de la última columna son evidencia **automatizada complementaria**. Los casos que no tuvieron ejecución manual no se presentan como aprobados manualmente. Al hacer el recorrido manual, agregar fecha, navegador/versión, datos usados, observado y estado; conservar cualquier fallo real.
 
@@ -175,7 +194,8 @@ La página mostró el título «Libreria Nya — Catálogo y gestión», conteni
 
 **Pendientes para cerrar la entrega:**
 
-- Ejecutar y registrar los casos manuales; M-06 con guía docente y copia de prueba. No declarar el parcial completamente verificado mientras falten.
+- Completar fecha efectiva, navegador/versión y datos usados del recorrido manual informado por el usuario.
+- Confirmar y registrar la instancia guiada docente de M-06. Los casos funcionales ya constan como aprobados según el reporte del usuario.
 ## Verificación de correcciones
 
 Se corrigieron los defectos de presentación y ventas y se completaron los integrantes. Se realizaron nuevos controles automatizados en Chrome headless con un contexto aislado, abriendo el `index.html` de esta copia por `file://`. Las mediciones anteriores se conservan como antecedente, no como estado actual.
@@ -189,7 +209,7 @@ Se corrigieron los defectos de presentación y ventas y se completaron los integ
 | Guardado y precio histórico | Después de altas y venta: 8 libros, 4 clientes y 1 venta al recargar; precio actual cambiado a 9000, histórico conservado en 1500, total 5000. |
 | Consola | Sin excepciones de página durante el recorrido automatizado. |
 
-Estos controles automatizados no sustituyen el recorrido manual completo ni la instancia guiada docente M-06. Los casos manuales siguen pendientes hasta su ejecución real.
+Estos controles automatizados no sustituyen el recorrido manual completo ni la instancia guiada docente M-06. El reporte manual posterior del usuario se registra en «Resultado del recorrido manual informado por el usuario»; los pendientes de este antecedente no son el estado actual.
 
 ## Recursos e imágenes
 

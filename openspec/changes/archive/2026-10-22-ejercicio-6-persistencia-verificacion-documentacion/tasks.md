@@ -1,6 +1,6 @@
 # PLAN — Ejercicio 6: persistencia, verificación y documentación
 
-**Estado:** PLAN aprobado e implementación autorizada por el usuario. Código y documentación implementados; cierre pendiente de pruebas manuales, instancia docente y defectos previos registrados.
+**Estado actual:** implementación y documentación realizadas. El usuario informa que el recorrido manual pasó todas las pruebas; T-15, T-16, T-17 y T-19 quedan completadas según ese reporte. T-18 conserva pendiente la confirmación expresa de instancia docente. Faltan metadatos del recorrido manual. Los apartados fechados anteriores se conservan como antecedentes.
 **Base:** `proposal.md`, SPEC aprobada explícitamente por el usuario.
 **Seguimiento:** las casillas reflejan ejecución real. Las pruebas automatizadas en Chrome se distinguen del recorrido manual pendiente.
 
@@ -119,7 +119,7 @@
   - **Depende de:** T-12.
   - **Comprobación:** en copia/contexto de prueba provocar errores con instrumentación temporal de `Storage.prototype.getItem/setItem` que lance excepciones controladas, restaurando métodos al terminar; registrar método y diferenciar simulación de fallo real del navegador. Comparar valores previos/posteriores, avisos y memoria. No agregar controles de simulación al producto ni llenar la cuota real del usuario. Si la instrumentación no es viable, dejar el control afectado pendiente con motivo.
 
-- [ ] **T-15 — Ejecutar M-01, M-02 y M-03.**
+- [x] **T-15 — Ejecutar M-01, M-02 y M-03.**
   - **Avance observado:** controles automatizados en Chrome correctos; falta recorrido manual y su registro como tal. Ver README.
   - **Resultado:** comprobar búsqueda parcial/mayúsculas/espacios, búsqueda vacía y sin resultados; ISBN duplicado y nuevo; email inválido, duplicado en mayúsculas y nuevo. Verificar actualización de listados y selectores.
   - **Cubre:** R-03, R-09; CA-02, CA-07.
@@ -127,7 +127,7 @@
   - **Depende de:** T-12.
   - **Comprobación:** ejecutar cada subcaso de SPEC §9, registrar datos usados y rechazo/alta realmente observados; cotejar que solo altas válidas cambian almacenamiento.
 
-- [ ] **T-16 — Ejecutar M-04 y M-05.**
+- [x] **T-16 — Ejecutar M-04 y M-05.**
   - **Avance observado:** controles automatizados de casos básicos correctos y venta de total 5000 conservada. Caso adicional fallido: quitar renglón inválido deja la bandera global bloqueando el restante válido. Falta recorrido manual y autorización para corregir defecto previo.
   - **Resultado:** comprobar confirmación sin cliente, cantidades 0/-1/1.5 al agregar y editar, libro duplicado; confirmar después 2 unidades a 1500 y 1 a 2000.
   - **Cubre:** R-03, R-04, R-09; CA-02, CA-03, CA-07.
@@ -135,7 +135,7 @@
   - **Depende de:** T-15 para altas ficticias de prueba; registrar el libro B de precio 2000 según protocolo.
   - **Comprobación:** intentos inválidos no aumentan historial; venta válida muestra 3000.00/2000.00/5000.00, datos descriptivos correctos y formulario limpio. Registrar por separado los subcasos, incluidos fallos previos que aparezcan.
 
-- [ ] **T-17 — Ejecutar M-07: recarga tras altas y venta.**
+- [x] **T-17 — Ejecutar M-07: recarga tras altas y venta.**
   - **Avance observado:** dos recargas y reapertura automatizadas conservaron estado idéntico de 8 libros, 4 clientes y 1 venta. Falta ejecución manual.
   - **Resultado:** verificar recuperación en catálogo, listados, selectores e historial después de dos recargas y reapertura del mismo archivo/contexto.
   - **Cubre:** R-01, R-02, R-03, R-04, R-09; CA-01, CA-02, CA-03, CA-07.
@@ -151,7 +151,7 @@
   - **Depende de:** T-17 y disponibilidad de instancia docente.
   - **Comprobación:** tras recargar, catálogo a 9000 y detalle anterior a 1500, subtotal 3000, total 5000; comprobar que la clave de ventas no fue editada. Si solo se hizo un control técnico sin docente, identificarlo por separado y mantener M-06 y esta tarea pendientes de la instancia guiada.
 
-- [ ] **T-19 — Ejecutar M-08: teclado y adaptación final.**
+- [x] **T-19 — Ejecutar M-08: teclado y adaptación final.**
   - **Avance observado:** medición automatizada fallida a 320 px (ancho de contenido global 439 px); a 1280 px sin desborde global. Tab desde buscador enfocó Buscar con outline sólido 3 px. Recorrido manual completo y corrección autorizada del defecto previo pendientes.
   - **Resultado:** recorrer las cinco vistas y detalle a 320 px y 1280 px; usar teclado para enlaces, formularios, selects y botones; comprobar foco visible y desplazamiento propio de tablas.
   - **Cubre:** R-09, R-11; CA-07, CA-08.
@@ -239,3 +239,12 @@ Se volvió a comprobar `file:///D:/parcial1programacion/index.html` en Chrome 15
 - T-18: precio del catálogo guardado cambiado exclusivamente a 9000; tras recarga el precio histórico permaneció en 1500 y total 5000. La instancia guiada docente sigue pendiente.
 - T-19: mediciones 320/1280 sin desborde global, incluido detalle; capturas inspeccionadas. Una pulsación Tab mostró foco en Buscar con contorno de 3 px. No equivale al recorrido completo de teclado.
 - Sin excepciones de página. Solo se actualizaron README y este seguimiento del ejercicio 6; las casillas manuales no cambian por aprobar controles automatizados.
+
+
+## Cierre manual informado por el usuario — registro del 22/10/2026
+
+El usuario confirmó «pasó todas las pruebas» después de recibir la guía de recorrido manual. Se registró su confirmación en README, separada de la evidencia automatizada. T-15, T-16, T-17 y T-19 se marcan realizadas según su reporte; esto no supone una ejecución adicional del asistente.
+
+M-06 se informa funcionalmente correcto dentro de esa confirmación general, pero no se confirmó expresamente la presencia o guía docente. T-18 permanece abierta únicamente respecto de esa instancia. No se inventan fecha efectiva de ejecución, navegador/versión, perfil, ids ni capturas del recorrido manual; esos metadatos permanecen por completar.
+
+Las menciones de cinco tareas manuales pendientes en secciones anteriores describen el estado histórico previo a esta confirmación. El estado actual es el de este cierre y el encabezado. Solo se modificaron documentos del ejercicio 6.
